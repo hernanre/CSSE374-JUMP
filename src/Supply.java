@@ -52,5 +52,16 @@ public class Supply {
     public void setUnit(String unit) {
         this.unit = unit;
     }
+
+    @Override
+    public String toString() {
+        return "Supply{" +
+                "name='" + name + '\'' +
+                ", quantityAvailable=" + quantityAvailable +
+                ", quantityOriginally=" + quantityOriginally +
+                ", type='" + type + '\'' +
+                ", unit='" + unit + '\'' +
+                '}';
+    }
 }
 
