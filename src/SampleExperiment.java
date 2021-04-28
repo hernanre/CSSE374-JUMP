@@ -1,6 +1,6 @@
 import java.util.HashSet;
 
-public class SampleExperiment implements Subject, Experiment{
+public class SampleExperiment implements Experiment{
 
     private String sampleName;
     private double quantity;

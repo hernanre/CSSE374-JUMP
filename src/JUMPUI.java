@@ -57,6 +57,10 @@ public class JUMPUI {
         sampleOnlySubmit.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                double quantity = Double.valueOf(quantityTextField.getText());
+                Experiment experiment = ExperimentCompiler.compileSampleOnly(typeTextField.getText(),
+                        quantity, unitTextField.getText(), locationTextField.getText());
+
             }
         });
 
