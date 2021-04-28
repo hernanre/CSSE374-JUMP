@@ -23,7 +23,7 @@ public class JUMPUI {
         JTabbedPane tabPanel = new JTabbedPane();
 
         //Sample Only
-        JPanel sampleOnlyTab = new JPanel(new GridLayout(4,2));
+        JPanel sampleOnlyTab = new JPanel(new GridLayout(5,2));
         tabPanel.addTab("Sample Only", null, sampleOnlyTab,
                 "Sample Only");
         sampleOnlyTab.setBorder(new TitledBorder(new EtchedBorder(), "Sample Only Experiments"));
@@ -39,6 +39,12 @@ public class JUMPUI {
 
         JTextField quantityTextField = new JTextField();
         sampleOnlyTab.add(quantityTextField);
+
+        JLabel unit = new JLabel("Unit: ");
+        sampleOnlyTab.add(unit);
+
+        JTextField unitTextField = new JTextField();
+        sampleOnlyTab.add(unitTextField);
 
         JLabel location = new JLabel("Location: ");
         sampleOnlyTab.add(location);
