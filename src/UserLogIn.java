@@ -59,7 +59,7 @@ public class UserLogIn {
             System.out.println("Login Successfully");
             myFrame.setVisible(false);
             myFrame.dispose();
-            //new JUMPUI();
+            new JUMPUI();
         } else {
             System.out.println("Wrong username/password");
         }
