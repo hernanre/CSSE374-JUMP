@@ -22,23 +22,6 @@ public class SampleExperiment implements Experiment{
 
     }
 
-    @Override
-    public void registerObserver(Observer observer) {
-        this.observers.add(observer);
-    }
-
-    @Override
-    public void removeObserver(Observer observer) {
-        this.observers.remove(observers);
-    }
-
-    @Override
-    public void notifyObservers() {
-        for(Observer o : observers) {
-
-        }
-    }
-
     public double getQuantity() {
         return quantity;
     }

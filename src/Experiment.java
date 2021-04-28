@@ -1,3 +1,3 @@
-public interface Experiment extends Subject {
+public interface Experiment{
     public void updateStatus();
 }

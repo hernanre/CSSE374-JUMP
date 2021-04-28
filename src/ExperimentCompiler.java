@@ -6,7 +6,7 @@ public class ExperimentCompiler {
 
     public static Experiment compileSampleOnly(String sampleName, double quantity, String unit, String location) {
         Experiment e = new SampleExperiment(sampleName, quantity, unit, location);
-        e.notifyObservers();
+
         return e;
     }
 
