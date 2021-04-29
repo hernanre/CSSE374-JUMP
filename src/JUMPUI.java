@@ -101,7 +101,7 @@ public class JUMPUI {
         complexSubmit.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                experimentCompiler.compileComplexExperiment(commandListArea.getText());
             }
         });
 

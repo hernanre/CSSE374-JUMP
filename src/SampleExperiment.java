@@ -7,14 +7,12 @@ public class SampleExperiment implements Experiment{
     private String unit;
     private String location;
 
-    private HashSet<Observer> observers;
 
     public SampleExperiment(String sampleName, double quantity, String unit, String location) {
         this.sampleName = sampleName;
         this.quantity = quantity;
         this.unit = unit;
         this.location = location;
-        this.observers = new HashSet<>();
     }
 
     @Override
