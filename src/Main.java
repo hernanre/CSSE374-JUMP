@@ -5,5 +5,6 @@ public class Main {
         System.out.println("Hello World");
         JFrame frame = new JFrame("FrameDemo");
         frame.setVisible(true);
+//        System.out.println("Hello");
     }
 }
