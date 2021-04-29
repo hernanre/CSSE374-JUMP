@@ -17,8 +17,12 @@ public class UserLogIn {
 
     public static String user = null;
 
+    private ExperimentCompiler experimentCompiler;
 
-    public UserLogIn() {
+    public UserLogIn(ExperimentCompiler experimentCompiler) {
+
+        this.experimentCompiler = experimentCompiler;
+
         myFrame = new JFrame();
         myFrame.setSize(400, 200);
         myFrame.setLocationRelativeTo(null);
@@ -59,7 +63,7 @@ public class UserLogIn {
             System.out.println("Login Successfully");
             myFrame.setVisible(false);
             myFrame.dispose();
-            new JUMPUI();
+            new JUMPUI(this.experimentCompiler);
         } else {
             System.out.println("Wrong username/password");
         }

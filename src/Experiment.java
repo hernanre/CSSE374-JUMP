@@ -1,3 +1,4 @@
-public interface Experiment implements Observer, Manager{
+public interface Experiment{
     public void updateStatus();
+    public int getPriority();
 }

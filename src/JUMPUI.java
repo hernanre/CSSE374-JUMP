@@ -13,7 +13,11 @@ public class JUMPUI {
 
     private JFrame myFrame;
 
-    public JUMPUI() {
+    private ExperimentCompiler experimentCompiler;
+
+    public JUMPUI(ExperimentCompiler experimentCompiler) {
+        this.experimentCompiler = experimentCompiler;
+
         myFrame = new JFrame();
         myFrame.setSize(600, 300);
         myFrame.setLocationRelativeTo(null);
@@ -57,10 +61,14 @@ public class JUMPUI {
         sampleOnlySubmit.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                double quantity = Double.valueOf(quantityTextField.getText());
-                ExperimentCompiler.compileSampleOnly(typeTextField.getText(),
+                double quantity = 0;
+                try {
+                     quantity = Double.valueOf(quantityTextField.getText());
+                } catch (NumberFormatException e1) {
+                    quantity = -1;
+                }
+                experimentCompiler.compileSampleOnly(typeTextField.getText(),
                         quantity, unitTextField.getText(), locationTextField.getText());
-
             }
         });
 
@@ -96,6 +104,13 @@ public class JUMPUI {
 
             }
         });
+
+        //Manager
+        JPanel managerTab = new JPanel(new GridLayout(5,2));
+        tabPanel.addTab("Manager", null, managerTab,
+                "Manager");
+        managerTab.setBorder(new TitledBorder(new EtchedBorder(), "Manager"));
+
 
         myFrame.add(tabPanel);
         myFrame.setVisible(true);

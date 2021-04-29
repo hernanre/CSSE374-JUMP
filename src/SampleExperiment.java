@@ -22,6 +22,11 @@ public class SampleExperiment implements Experiment{
 
     }
 
+    @Override
+    public int getPriority() {
+        return 0;
+    }
+
     public double getQuantity() {
         return quantity;
     }
