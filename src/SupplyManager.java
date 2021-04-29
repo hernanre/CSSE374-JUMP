@@ -38,4 +38,8 @@ public class SupplyManager implements Observer, Manager{
         }
         return false;
     }
+
+    public void addSupply(Supply supply) {
+        this.supplies.add(supply);
+    }
 }

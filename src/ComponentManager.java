@@ -32,4 +32,8 @@ public class ComponentManager implements Observer, Manager{
     public void addExperiment(Experiment e) {
         //do nothing
     }
+
+    public void addComponent(Component component) {
+        components.add(component);
+    }
 }
