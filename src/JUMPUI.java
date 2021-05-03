@@ -5,6 +5,7 @@ import javax.swing.plaf.basic.BasicBorders;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 //Authors: Ricardo H, Carlos F, and Cehong W.
 
@@ -19,7 +20,7 @@ public class JUMPUI {
         this.experimentCompiler = experimentCompiler;
 
         myFrame = new JFrame();
-        myFrame.setSize(600, 300);
+        myFrame.setSize(800, 400);
         myFrame.setLocationRelativeTo(null);
         myFrame.setTitle("Scientist UI");
         myFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -74,11 +75,66 @@ public class JUMPUI {
 
 
         //Reagent Based
-        JPanel reagentBasedTab = new JPanel();
+        JPanel reagentBasedTab = new JPanel(new GridLayout(6,2));
         tabPanel.addTab("Reagent Based", null, reagentBasedTab,
                 "Reagent Based");
         reagentBasedTab.setBorder(new TitledBorder(new EtchedBorder(), "Reagent Based Experiments"));
-
+        JLabel reagentName = new JLabel("Reagent Name: ");
+        reagentBasedTab.add(reagentName);
+        JTextField reagentNameField = new JTextField();
+        reagentBasedTab.add(reagentNameField);
+        JLabel reagentQuantity = new JLabel("Reagent Quantity: ");
+        reagentBasedTab.add(reagentQuantity);
+        JTextField reagentQuantityField = new JTextField();
+        reagentBasedTab.add(reagentQuantityField);
+        JLabel reagentTime = new JLabel("Time to wait: ");
+        reagentBasedTab.add(reagentTime);
+        JTextField reagentTimeField = new JTextField();
+        reagentBasedTab.add(reagentTimeField);
+        JLabel details = new JLabel("Details: ");
+        reagentBasedTab.add(details);
+        JTextArea  detailsArea = new JTextArea();
+        reagentBasedTab.add(detailsArea);
+        JLabel measurements = new JLabel("Measurements: ");
+        reagentBasedTab.add(measurements);
+        JTextArea measurementsArea = new JTextArea();
+        reagentBasedTab.add(measurementsArea);
+        JButton addReagent = new JButton("Add");
+        ArrayList<ArrayList<String>> reagents = new ArrayList<>();
+        addReagent.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ArrayList<String> reagent = new ArrayList<>();
+                try {
+                    Double.valueOf(reagentQuantityField.getText());
+                    Double.valueOf(reagentTimeField.getText());
+                } catch (NumberFormatException e1) {
+                    System.out.println("Please input numbers for quantity and time");
+                    return;
+                }
+                reagent.add(reagentNameField.getText());
+                reagent.add(reagentQuantityField.getText());
+                reagent.add(reagentTimeField.getText());
+                reagent.add(detailsArea.getText());
+                reagent.add(measurementsArea.getText());
+                reagentNameField.setText("");
+                reagentQuantityField.setText("");
+                reagentTimeField.setText("");
+                detailsArea.setText("");
+                measurementsArea.setText("");
+                reagents.add(reagent);
+            }
+        });
+        reagentBasedTab.add(addReagent);
+        JButton reagentSubmit = new JButton("Submit");
+        reagentSubmit.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //compile the arraylist<arraylist<string>>
+                //no data class no
+            }
+        });
+        reagentBasedTab.add(reagentSubmit);
 
         //Complex
         JPanel complexTab = new JPanel(new GridLayout(3,1));
