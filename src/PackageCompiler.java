@@ -1,6 +1,4 @@
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
+import org.json.simple.*;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -8,7 +6,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class PackageCompiler {
-    public void toJSONfile(ArrayList<JSONObject> experiments) throws JSONException, IOException {
+    public File toJSONfile(ArrayList<JSONObject> experiments) throws IOException {
         JSONObject jSON = new JSONObject();
 
         JSONObject payload = new JSONObject();
@@ -16,10 +14,12 @@ public class PackageCompiler {
             payload.put("experiment"+(i+1), experiments.get(i));
         }
         jSON.put("payload", payload);
-        FileWriter file = new FileWriter("src/File.json");
-        file.write(jSON.toString(1));
+        File file = new File("src/File.json");
+        FileWriter fr = new FileWriter(file);
+        fr.write(jSON.toString());
 //       file.append(jSON.toString(1));
-        file.close();
+        fr.close();
+        return file;
     }
 
 

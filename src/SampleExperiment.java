@@ -1,6 +1,4 @@
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
+import org.json.simple.*;
 
 import java.util.HashSet;
 
@@ -61,10 +59,10 @@ public class SampleExperiment implements Experiment{
     public String getLabel() {
         return "Sample Ex: " + sampleName + " of " + quantity + " " + unit;
     }
-    public JSONObject toJSONObject() throws JSONException {
+    public JSONObject toJSONObject(){
         JSONObject experimentInfo = new JSONObject();
-        experimentInfo.put("experiment_id", "TESTID");
-        experimentInfo.put("experiment_name","TESTName");
+        experimentInfo.put("experiment_id", "TEST_ID");
+        experimentInfo.put("experiment_name","TEST_Name");
         experimentInfo.put("experiment_type", "Sample-Only");
 
         JSONArray commands = new JSONArray();
@@ -77,7 +75,8 @@ public class SampleExperiment implements Experiment{
 
         String params[] = new String[1];
         params[0] = "HPGC-1";
-        command2.put("param", params);
+        params.toString();
+        command2.put("param", "test");
         command2.put("command", "C15");
 
 
@@ -85,9 +84,9 @@ public class SampleExperiment implements Experiment{
         JSONObject command3 = new JSONObject();
         command3.put("command", "C19");
 
-        commands.put(command1);
-        commands.put(command2);
-        commands.put(command3);
+        commands.add(command1);
+        commands.add(command2);
+        commands.add(command3);
         experimentInfo.put("experiment_commands", commands);
         return experimentInfo;
     }
