@@ -12,6 +12,7 @@ public class SampleExperiment implements Experiment{
     private double quantity;
     private String unit;
     private String location;
+    private String status;
 
 
     public SampleExperiment(String sampleName, double quantity, String unit, String location) {
@@ -19,6 +20,7 @@ public class SampleExperiment implements Experiment{
         this.quantity = quantity;
         this.unit = unit;
         this.location = location;
+        this.status = "Entered";
     }
 
     @Override
