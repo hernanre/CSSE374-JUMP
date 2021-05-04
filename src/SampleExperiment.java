@@ -41,6 +41,11 @@ public class SampleExperiment implements Experiment{
         return unit;
     }
 
+    @Override
+    public String getLabel() {
+        return "Sample Ex: " + sampleName + " of " + quantity + " " + unit;
+    }
+
     }
 
 

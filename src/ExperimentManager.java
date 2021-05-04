@@ -19,6 +19,10 @@ public class ExperimentManager implements Observer, Manager{
 
     }
 
+    public PriorityQueue<Experiment> getExperiments() {
+        return experiments;
+    }
+
     @Override
     public boolean validExperiment(Experiment experiment) {
         return true;
