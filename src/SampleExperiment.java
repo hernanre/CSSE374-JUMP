@@ -2,6 +2,8 @@ import java.util.HashSet;
 
 public class SampleExperiment implements Experiment{
 
+    private String experimentID;
+    private String experimentName;
     private String sampleName;
     private double quantity;
     private String unit;
@@ -39,6 +41,19 @@ public class SampleExperiment implements Experiment{
 
     public String getUnit() {
         return unit;
+    }
+
+    public String getExperimentID() {
+        return experimentID;
+    }
+
+    public String getExperimentName() {
+        return experimentName;
+    }
+
+    @Override
+    public String getLabel() {
+        return "Sample Ex: " + sampleName + " of " + quantity + " " + unit;
     }
 
     }

@@ -63,7 +63,7 @@ public class UserLogIn {
             System.out.println("Login Successfully");
             myFrame.setVisible(false);
             myFrame.dispose();
-            new JUMPUI(this.experimentCompiler);
+            //new JUMPUI(this.experimentCompiler);
         } else {
             System.out.println("Wrong username/password");
         }

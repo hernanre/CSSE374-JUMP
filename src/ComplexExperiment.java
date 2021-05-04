@@ -18,5 +18,10 @@ public class ComplexExperiment implements Experiment {
     public int getPriority() {
         return 0;
     }
+
+    @Override
+    public String getLabel() {
+        return null;
+    }
 }
 

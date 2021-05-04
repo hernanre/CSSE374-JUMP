@@ -6,6 +6,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.PriorityQueue;
 
 //Authors: Ricardo H, Carlos F, and Cehong W.
 
@@ -15,9 +16,11 @@ public class JUMPUI {
     private JFrame myFrame;
 
     private ExperimentCompiler experimentCompiler;
+    private ExperimentManager experimentManager;
 
-    public JUMPUI(ExperimentCompiler experimentCompiler) {
+    public JUMPUI(ExperimentCompiler experimentCompiler, ExperimentManager experimentManager) {
         this.experimentCompiler = experimentCompiler;
+        this.experimentManager = experimentManager;
 
         myFrame = new JFrame();
         myFrame.setSize(800, 400);
@@ -162,10 +165,40 @@ public class JUMPUI {
         });
 
         //Manager
-        JPanel managerTab = new JPanel(new GridLayout(5,2));
+        JPanel managerTab = new JPanel();
         tabPanel.addTab("Manager", null, managerTab,
                 "Manager");
         managerTab.setBorder(new TitledBorder(new EtchedBorder(), "Manager"));
+        JButton refresh = new JButton("Refresh");
+        managerTab.add(refresh);
+        refresh.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                managerTab.removeAll();
+                managerTab.add(refresh);
+                PriorityQueue<Experiment> experiments = new PriorityQueue<>(
+                        (o1, o2) -> o1.getPriority() - o2.getPriority());
+                for(Experiment experiment : experimentManager.getExperiments()) {
+                    JCheckBox checkBox = new JCheckBox();
+                    JLabel exp = new JLabel();
+                    exp.setText(experiment.getLabel());
+                    checkBox.addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            if(checkBox.isSelected()) {
+                                System.out.println("Add an experiment to the Package");
+                                experiments.add(experiment);
+                            } else {
+                                System.out.println("Delete an experiment from the Package");
+                                experiments.remove(experiment);
+                            }
+                        }
+                    });
+                    managerTab.add(checkBox);
+                    managerTab.add(exp);
+                }
+            }
+        });
 
 
         myFrame.add(tabPanel);
