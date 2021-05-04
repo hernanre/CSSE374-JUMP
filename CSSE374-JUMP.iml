@@ -12,5 +12,6 @@
     <orderEntry type="library" name="poi-ooxml-3.17" level="project" />
     <orderEntry type="library" name="poi-3.17" level="project" />
     <orderEntry type="library" name="commons-collections4-4.1" level="project" />
+    <orderEntry type="library" name="java-json" level="project" />
   </component>
 </module>
