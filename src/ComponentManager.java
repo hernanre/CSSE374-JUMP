@@ -15,7 +15,7 @@ public class ComponentManager implements Observer, Manager{
 
     @Override
     public boolean validExperiment(Experiment experiment) {
-        if(experiment instanceof SampleExperiment) {
+        if(experiment instanceof SampleExperiment || experiment instanceof ReagentExperiment) {
             for(Component c: components) {
                 if(c.getType().equals("ARM") && c.getStatus().equals("Failed")) {
                     return false;

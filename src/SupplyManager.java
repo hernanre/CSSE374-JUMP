@@ -16,6 +16,8 @@ public class SupplyManager implements Observer, Manager{
                     supply.setQuantityAvailable(supply.getQuantityAvailable() - 10);
                 }
             }
+        } else if(e instanceof ReagentExperiment) {
+
         }
     }
 
@@ -35,6 +37,8 @@ public class SupplyManager implements Observer, Manager{
                 }
             }
             return true;
+        } else if (experiment instanceof ReagentExperiment) {
+            //Need Data Class
         }
         return false;
     }
