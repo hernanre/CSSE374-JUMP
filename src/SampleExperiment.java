@@ -14,7 +14,9 @@ public class SampleExperiment implements Experiment{
     private String status;
 
 
-    public SampleExperiment(String sampleName, double quantity, String unit, String location) {
+    public SampleExperiment(String experimentName, String experimentID, String sampleName, double quantity, String unit, String location) {
+        this.experimentName = experimentName;
+        this.experimentID = experimentID;
         this.sampleName = sampleName;
         this.quantity = quantity;
         this.unit = unit;
@@ -58,7 +60,7 @@ public class SampleExperiment implements Experiment{
 
     @Override
     public String getLabel() {
-        return "Sample Ex: " + sampleName + " of " + quantity + " " + unit;
+        return "Sample Ex ID: " + experimentID + ", Name: " + experimentName;
     }
     public JSONObject toJSONObject(){
         JSONObject experimentInfo = new JSONObject();

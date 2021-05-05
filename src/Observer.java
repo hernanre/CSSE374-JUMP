@@ -1,6 +1,8 @@
+import java.util.ArrayList;
+
 interface Observer {
 
     public void notifyObserver();
-    public boolean validExperiment(Experiment experiment);
+    public boolean validExperiments(ArrayList<Experiment> experiments);
 
 }
