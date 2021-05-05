@@ -1,16 +1,23 @@
+import java.util.ArrayList;
+
 public class ReagentExperiment implements Experiment {
 
 
-    private String reagentName, detail, measurement, ID, name;
-    private int quantity, time;
+    private String ID, name;
+    private ArrayList<Reagent> reagents;
 
-    public ReagentExperiment(String reagentName, String ID, String name,
-                             String detail, String measurement, int quantity, int time){
-        this.reagentName = reagentName;
-        this.detail = detail;
-        this.quantity = quantity;
-        this.time = time;
-        this.measurement= measurement;
+    public ReagentExperiment(String ID, String name, ArrayList<Reagent> reagents){
+        this.name = name;
+        this.ID = ID;
+        this.reagents = reagents;
+    }
+
+    public ArrayList<Reagent> getReagents() {
+        return reagents;
+    }
+
+    public void addReagemt(Reagent reagent) {
+        reagents.add(reagent);
     }
 
     @Override
@@ -25,6 +32,6 @@ public class ReagentExperiment implements Experiment {
 
     @Override
     public String getLabel() {
-        return null;
+        return "Sample ID: " + ID + ", Name: " + name;
     }
 }

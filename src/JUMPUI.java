@@ -31,12 +31,24 @@ public class JUMPUI {
         JTabbedPane tabPanel = new JTabbedPane();
 
         //Sample Only
-        JPanel sampleOnlyTab = new JPanel(new GridLayout(5,2));
+        JPanel sampleOnlyTab = new JPanel(new GridLayout(7,2));
         tabPanel.addTab("Sample Only", null, sampleOnlyTab,
                 "Sample Only");
         sampleOnlyTab.setBorder(new TitledBorder(new EtchedBorder(), "Sample Only Experiments"));
 
-        JLabel type = new JLabel("Type: ");
+        JLabel sampleExID = new JLabel("ID: ");
+        sampleOnlyTab.add(sampleExID);
+
+        JTextField IDTextField = new JTextField();
+        sampleOnlyTab.add(IDTextField);
+
+        JLabel sampleExName = new JLabel("Name: ");
+        sampleOnlyTab.add(sampleExName);
+
+        JTextField nameTextField = new JTextField();
+        sampleOnlyTab.add(nameTextField);
+
+        JLabel type = new JLabel("Sample Type: ");
         sampleOnlyTab.add(type);
 
         JTextField typeTextField = new JTextField();
@@ -71,13 +83,26 @@ public class JUMPUI {
                 } catch (NumberFormatException e1) {
                     quantity = -1;
                 }
-                experimentCompiler.compileSampleOnly(typeTextField.getText(),
-                        quantity, unitTextField.getText(), locationTextField.getText());
+                experimentCompiler.compileSampleOnly(IDTextField.getText(), nameTextField.getText(),
+                        typeTextField.getText(), quantity, unitTextField.getText(),
+                        locationTextField.getText());
             }
         });
 
 
         //Reagent Based
+        JLabel reagentExID = new JLabel("ID: ");
+        sampleOnlyTab.add(sampleExID);
+
+        JTextField reagentIDTextField = new JTextField();
+        sampleOnlyTab.add(IDTextField);
+
+        JLabel reagentExName = new JLabel("Name: ");
+        sampleOnlyTab.add(sampleExName);
+
+        JTextField reagentNameTextField = new JTextField();
+        sampleOnlyTab.add(nameTextField);
+
         JPanel reagentBasedTab = new JPanel(new GridLayout(6,2));
         tabPanel.addTab("Reagent Based", null, reagentBasedTab,
                 "Reagent Based");
@@ -135,6 +160,14 @@ public class JUMPUI {
             public void actionPerformed(ActionEvent e) {
                 //compile the arraylist<arraylist<string>>
                 //no data class no
+                try {
+                    experimentCompiler.compileReagentExperiment(reagentExName.getText(), reagentExID.getText(),
+                            reagents);
+                } catch (NumberFormatException e1) {
+                    System.out.println("Please input a number for quantity and time");
+                } catch (IndexOutOfBoundsException e2) {
+                    System.out.println("Failed to add");
+                }
             }
         });
         reagentBasedTab.add(reagentSubmit);
@@ -168,16 +201,24 @@ public class JUMPUI {
         JPanel managerTab = new JPanel();
         tabPanel.addTab("Manager", null, managerTab,
                 "Manager");
+        PriorityQueue<Experiment> experiments = new PriorityQueue<>(
+                (o1, o2) -> o1.getPriority() - o2.getPriority());
         managerTab.setBorder(new TitledBorder(new EtchedBorder(), "Manager"));
+        JButton managerSubmit = new JButton("Submit");
+        managerSubmit.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println(experiments.size());
+            }
+        });
         JButton refresh = new JButton("Refresh");
         managerTab.add(refresh);
+        managerTab.add(managerSubmit);
         refresh.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 managerTab.removeAll();
                 managerTab.add(refresh);
-                PriorityQueue<Experiment> experiments = new PriorityQueue<>(
-                        (o1, o2) -> o1.getPriority() - o2.getPriority());
                 for(Experiment experiment : experimentManager.getExperiments()) {
                     JCheckBox checkBox = new JCheckBox();
                     JLabel exp = new JLabel();
@@ -197,6 +238,7 @@ public class JUMPUI {
                     managerTab.add(checkBox);
                     managerTab.add(exp);
                 }
+                managerTab.add(managerSubmit);
             }
         });
 

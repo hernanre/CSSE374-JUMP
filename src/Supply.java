@@ -45,6 +45,10 @@ public class Supply {
         this.quantityOriginally = quantityOriginally;
     }
 
+    public void decreaseQuantityAvailable(int quantity) {
+        this.quantityAvailable -= quantity;
+    }
+
     public void setType(String type) {
         this.type = type;
     }

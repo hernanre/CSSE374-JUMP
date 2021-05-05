@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.HashSet;
 
 public class ComponentManager implements Observer, Manager{
@@ -14,18 +15,44 @@ public class ComponentManager implements Observer, Manager{
     }
 
     @Override
-    public boolean validExperiment(Experiment experiment) {
-        if(experiment instanceof SampleExperiment || experiment instanceof ReagentExperiment) {
-            for(Component c: components) {
-                if(c.getType().equals("ARM") && c.getStatus().equals("Failed")) {
-                    return false;
-                } else if(c.getName().equals("Sample Ejector") && c.getStatus().equals("Failed")) {
-                    return false;
+    public boolean validExperiments(ArrayList<Experiment> experiments ) {
+        int check = 0;
+        for(Experiment experiment : experiments) {
+            if (experiment instanceof SampleExperiment &&
+                    check != 1 && check != 3 && check != 5 && check != 7) {
+                for (Component c : components) {
+                    if (c.getType().equals("ARM") && c.getStatus().equals("Failed")) {
+                        return false;
+                    } else if (c.getName().equals("Sample Ejector") && c.getStatus().equals("Failed")) {
+                        return false;
+                    } else if (c.getId().equals("T1") || c.getId().equals("T2")
+                            || c.getId().equals("T3")) {
+                        if (c.getStatus().equals("Failed"))
+                            return false;
+                    } else if (c.getId().equals("HPGC-1") && c.getStatus().equals("Failed")) {
+                        return false;
+                    }
                 }
+                check += 1;
+            } else if (experiment instanceof ReagentExperiment&&
+                    check != 2 && check != 3 && check != 6 && check != 7) {
+                for (Component c : components) {
+                    if (c.getType().equals("ARM") && c.getStatus().equals("Failed")) {
+                        return false;
+                    } else if (c.getType().equals("Ejector") && c.getStatus().equals("Failed")) {
+                        return false;
+                    } else if (c.getType().equals("Tool") && c.getStatus().equals("Failed")) {
+                        return false;
+                    }
+                }
+                check += 2;
             }
-            return true;
+            //We only have sample only  and reagent based
+            if(check == 3) {
+                break;
+            }
         }
-        return false;
+        return true;
     }
 
     @Override

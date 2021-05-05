@@ -13,17 +13,15 @@ public class ExperimentCompiler implements Subject {
         this.managers = new HashSet<>();
     }
 
-    public void compileSampleOnly(String sampleName, double quantity, String unit, String location) {
-        Experiment e = new SampleExperiment(sampleName, quantity, unit, location);
+    public void compileSampleOnly(String experimentName, String experimentID,
+                                  String sampleName, double quantity, String unit, String location) {
+        Experiment e = new SampleExperiment(experimentName, experimentID,
+                sampleName, quantity, unit, location);
         boolean valid = true;
         if (quantity <= 0) {
             valid = false;
         } else {
-            for (Observer observer : observers) {
-                if (!observer.validExperiment(e)) {
-                    valid = false;
-                }
-            }
+
         }
         if (valid) {
             for (Manager manager : managers) {
@@ -32,6 +30,21 @@ public class ExperimentCompiler implements Subject {
             System.out.println("Added");
         } else {
             System.out.println("Failed to add");
+        }
+    }
+
+    public void compileReagentExperiment(String experimentName, String experimentID,
+                                         ArrayList<ArrayList<String>> reagentStringList)
+            throws NumberFormatException, IndexOutOfBoundsException{
+        ArrayList<Reagent> reagents = new ArrayList<>();
+        for(ArrayList<String> reagentStrings : reagentStringList) {
+                Reagent reagent = new Reagent(reagentStrings.get(0), reagentStrings.get(3), reagentStrings.get(4),
+                        Integer.valueOf(reagentStrings.get(1)), Integer.valueOf(reagentStrings.get(2)));
+                reagents.add(reagent);
+        }
+        Experiment experiment = new ReagentExperiment(experimentName, experimentID, reagents);
+        for (Manager manager : managers) {
+            manager.addExperiment(experiment);
         }
     }
 
@@ -50,11 +63,7 @@ public class ExperimentCompiler implements Subject {
 //        }
         boolean valid = true;
         Experiment e = new ComplexExperiment(commandList);
-        for (Observer observer : observers) {
-            if (!observer.validExperiment(e)) {
-                valid = false;
-            }
-        }
+
         if (valid) {
             for (Manager manager : managers) {
                 manager.addExperiment(e);
@@ -64,6 +73,8 @@ public class ExperimentCompiler implements Subject {
             System.out.println("Failed to add");
         }
     }
+
+
 
     public void registerManager(Manager manager) {
         managers.add(manager);
