@@ -1,3 +1,5 @@
+import org.json.simple.JSONObject;
+import org.json.simple.JSONArray;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -77,4 +79,21 @@ public class SupplyManager implements Observer, Manager{
             return false;
         }
     }
+
+    @Override
+    public void extractResults(JSONObject data) {
+        JSONArray suppliesResults = (JSONArray) data.get("inventory");
+        for (String s: supplies.keySet()){
+            for (int i = 0 ; i < suppliesResults.size(); i++) {
+                JSONObject obj = (JSONObject) suppliesResults.get(i);
+                if (obj.containsKey("liquid O2")){
+                    long quantity = (long) obj.get("liquid O2");
+                    supplies.get(s).setQuantityAvailable( (int) quantity);
+                }
+            }
+        }
+    }
+
+
+
 }

@@ -1,7 +1,7 @@
-import org.json.simple.*;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 
 public class SampleExperiment implements Experiment{
 
@@ -27,6 +27,16 @@ public class SampleExperiment implements Experiment{
     @Override
     public void updateStatus() {
 
+    }
+
+    @Override
+    public void setStatus(String status){
+        this.status = status;
+    }
+
+    @Override
+    public String getStatus() {
+        return status;
     }
 
     @Override
@@ -58,6 +68,10 @@ public class SampleExperiment implements Experiment{
         return experimentName;
     }
 
+    @Override
+    public String getID() {
+        return experimentID;
+    }
     @Override
     public String getLabel() {
         return "Sample Ex ID: " + experimentID + ", Name: " + experimentName;

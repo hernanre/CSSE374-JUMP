@@ -1,3 +1,6 @@
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 
@@ -53,6 +56,20 @@ public class ComponentManager implements Observer, Manager{
             }
         }
         return true;
+    }
+
+    @Override
+    public void extractResults(JSONObject data) {
+        JSONArray componentsResults = (JSONArray) data.get("capabilities");
+        for (Component c: components){
+            for (int i = 0 ; i < componentsResults.size(); i++) {
+                JSONObject obj = (JSONObject) componentsResults.get(i);
+                String status = (String) obj.get(c.getId());
+                if (status != null){
+                    c.setStatus(status);
+                }
+            }
+        }
     }
 
     @Override

@@ -1,12 +1,13 @@
 import java.util.ArrayList;
 
 public class ComplexExperiment implements Experiment {
-
+    private String ID, name, status;
     private ArrayList<ArrayList<String>> commandList;
     private int priority;
 
     public ComplexExperiment(ArrayList<ArrayList<String>> commandList) {
         this.commandList = commandList;
+        this.status = "Entered";
     }
 
     @Override
@@ -22,6 +23,21 @@ public class ComplexExperiment implements Experiment {
     @Override
     public String getLabel() {
         return null;
+    }
+
+    @Override
+    public String getID() {
+        return ID;
+    }
+
+    @Override
+    public void setStatus(String status){
+        this.status = status;
+    }
+
+    @Override
+    public String getStatus() {
+        return status;
     }
 }
 

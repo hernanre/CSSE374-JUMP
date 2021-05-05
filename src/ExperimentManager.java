@@ -1,5 +1,7 @@
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.PriorityQueue;
 
 public class ExperimentManager implements Observer, Manager{
@@ -27,5 +29,19 @@ public class ExperimentManager implements Observer, Manager{
     @Override
     public boolean validExperiments(ArrayList<Experiment> experiments) {
         return true;
+    }
+
+    @Override
+    public void extractResults(JSONObject data) {
+        JSONArray experimentsResults = (JSONArray) data.get("experiment_status");
+        for (Experiment e: experiments){
+            for (int i = 0 ; i < experimentsResults.size(); i++) {
+                JSONObject obj = (JSONObject) experimentsResults.get(i);
+                String status = (String) obj.get(e.getID());
+                if (status != null){
+                    e.setStatus(status);
+                }
+            }
+        }
     }
 }
