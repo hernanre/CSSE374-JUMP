@@ -24,6 +24,7 @@ public class SupplyManager implements Observer, Manager{
     public boolean validExperiments(ArrayList<Experiment> experiments) {
         HashMap<String, Integer> sumOfNeeds = new HashMap<>();
         for(Experiment experiment : experiments) {
+            System.out.println("1");
             if (experiment instanceof SampleExperiment) {
                 if (supplies.get("test tube").getQuantityAvailable() < 1) {
                     return false;
@@ -65,5 +66,15 @@ public class SupplyManager implements Observer, Manager{
 
     public void addSupply(Supply supply) {
         this.supplies.put(supply.getName(), supply);
+    }
+
+    public boolean setSupply (String name, int quantity) {
+        if(supplies.containsKey(name)) {
+            supplies.get(name).setQuantityAvailable(quantity);
+            return true;
+        } else {
+            System.out.println("Unknown Supply");
+            return false;
+        }
     }
 }

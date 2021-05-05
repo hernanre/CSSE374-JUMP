@@ -1,7 +1,6 @@
 import javax.swing.*;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
-import javax.swing.plaf.basic.BasicBorders;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -17,9 +16,11 @@ public class JUMPUI {
 
     private ExperimentCompiler experimentCompiler;
     private ExperimentManager experimentManager;
+    private PackageCompiler packageCompiler;
 
-    public JUMPUI(ExperimentCompiler experimentCompiler, ExperimentManager experimentManager) {
+    public JUMPUI(ExperimentCompiler experimentCompiler, PackageCompiler packageCompiler, ExperimentManager experimentManager) {
         this.experimentCompiler = experimentCompiler;
+        this.packageCompiler = packageCompiler;
         this.experimentManager = experimentManager;
 
         myFrame = new JFrame();
@@ -209,6 +210,7 @@ public class JUMPUI {
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.out.println(experiments.size());
+                packageCompiler.sendExperiment(experiments);
             }
         });
         JButton refresh = new JButton("Refresh");

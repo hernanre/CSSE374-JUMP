@@ -4,8 +4,31 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.PriorityQueue;
 
-public class PackageCompiler {
+public class PackageCompiler implements Subject{
+
+    private HashSet<Observer> observers;
+    private HashSet<Manager> managers;
+
+    public PackageCompiler() {
+        this.observers = new HashSet<>();
+        this.managers = new HashSet<>();
+    }
+
+    public boolean sendExperiment(PriorityQueue<Experiment> experiments) {
+        ArrayList<Experiment> experimentArrayList = new ArrayList<>(experiments);
+        for (Observer o : observers){
+            if(!o.validExperiments(experimentArrayList))
+                return false;
+        }
+        System.out.println("Approved");
+        //Exp -> JSONObject
+        //toJSONfile()
+        return true;
+    }
+
     public File toJSONfile(ArrayList<JSONObject> experiments) throws IOException {
         JSONObject jSON = new JSONObject();
 
@@ -23,7 +46,26 @@ public class PackageCompiler {
     }
 
 
+    public void registerManager(Manager manager) {
+        managers.add(manager);
+    }
 
+    public void removeManager(Manager manager) {
+        managers.remove(manager);
+    }
 
+    @Override
+    public void registerObserver(Observer observer) {
+        observers.add(observer);
+    }
 
+    @Override
+    public void removeObserver(Observer observer) {
+        observers.remove(observer);
+    }
+
+    @Override
+    public void notifyObservers(Experiment e) {
+
+    }
 }
