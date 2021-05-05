@@ -80,4 +80,8 @@ public class ComponentManager implements Observer, Manager{
     public void addComponent(Component component) {
         components.add(component);
     }
+
+    public void setComponents(HashSet<Component> components) {
+        this.components = components;
+    }
 }

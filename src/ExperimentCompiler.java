@@ -36,6 +36,9 @@ public class ExperimentCompiler implements Subject {
             throws NumberFormatException, IndexOutOfBoundsException{
         ArrayList<Reagent> reagents = new ArrayList<>();
         for(ArrayList<String> reagentStrings : reagentStringList) {
+            if (reagentStrings.size() != 5)
+                throw new IndexOutOfBoundsException();
+            System.out.println("Reagent " + reagentStrings.get(0));
                 Reagent reagent = new Reagent(reagentStrings.get(0), reagentStrings.get(3), reagentStrings.get(4),
                         Integer.valueOf(reagentStrings.get(1)), Integer.valueOf(reagentStrings.get(2)));
                 reagents.add(reagent);

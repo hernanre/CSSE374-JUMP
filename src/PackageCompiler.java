@@ -11,9 +11,10 @@ public class PackageCompiler implements Subject{
 
     private HashSet<Observer> observers;
     private HashSet<Manager> managers;
+    private CommunicationManager communicationManager;
 
-    public PackageCompiler() {
-
+    public PackageCompiler(CommunicationManager communicationManager) {
+        this.communicationManager = communicationManager;
         this.observers = new HashSet<>();
         this.managers = new HashSet<>();
     }
@@ -31,7 +32,8 @@ public class PackageCompiler implements Subject{
             expJson.add(e.getJSONObject());
         }
         try {
-            File tosend = toJSONfile(expJson);
+            File toSend = toJSONfile(expJson);
+            communicationManager.sendExperiment(toSend);
         } catch (IOException e) {
             e.printStackTrace();
             return false;

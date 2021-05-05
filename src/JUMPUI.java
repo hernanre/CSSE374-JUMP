@@ -135,8 +135,8 @@ public class JUMPUI {
             public void actionPerformed(ActionEvent e) {
                 ArrayList<String> reagent = new ArrayList<>();
                 try {
-                    Double.valueOf(reagentQuantityField.getText());
-                    Double.valueOf(reagentTimeField.getText());
+                    Integer.valueOf(reagentQuantityField.getText());
+                    Integer.valueOf(reagentTimeField.getText());
                 } catch (NumberFormatException e1) {
                     System.out.println("Please input numbers for quantity and time");
                     return;
@@ -160,10 +160,35 @@ public class JUMPUI {
             @Override
             public void actionPerformed(ActionEvent e) {
                 //compile the arraylist<arraylist<string>>
-                //no data class no
                 try {
+                    ArrayList<String> reagent = new ArrayList<>();
+                    try {
+                        Integer.valueOf(reagentQuantityField.getText());
+                        Integer.valueOf(reagentTimeField.getText());
+                    } catch (NumberFormatException e1) {
+                        System.out.println("Please input numbers for quantity and time");
+                        return;
+                    }
+                    reagent.add(reagentNameField.getText());
+                    reagent.add(reagentQuantityField.getText());
+                    reagent.add(reagentTimeField.getText());
+                    reagent.add(detailsArea.getText());
+                    reagent.add(measurementsArea.getText());
+                    reagentNameField.setText("");
+                    reagentQuantityField.setText("");
+                    reagentTimeField.setText("");
+                    detailsArea.setText("");
+                    measurementsArea.setText("");
+                    reagents.add(reagent);
                     experimentCompiler.compileReagentExperiment(reagentExName.getText(), reagentExID.getText(),
                             reagents);
+                    reagentNameField.setText("");
+                    reagentQuantityField.setText("");
+                    reagentTimeField.setText("");
+                    detailsArea.setText("");
+                    measurementsArea.setText("");
+                    reagents.clear();
+                    System.out.println("Reagent Experiment created");
                 } catch (NumberFormatException e1) {
                     System.out.println("Please input a number for quantity and time");
                 } catch (IndexOutOfBoundsException e2) {
@@ -209,8 +234,9 @@ public class JUMPUI {
         managerSubmit.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println(experiments.size());
+                System.out.println(experiments.size() +" experiments sent");
                 packageCompiler.sendExperiment(experiments);
+                experiments.clear();
             }
         });
         JButton refresh = new JButton("Refresh");

@@ -26,11 +26,12 @@ public class SupplyManager implements Observer, Manager{
     public boolean validExperiments(ArrayList<Experiment> experiments) {
         HashMap<String, Integer> sumOfNeeds = new HashMap<>();
         for(Experiment experiment : experiments) {
-            System.out.println("1");
             if (experiment instanceof SampleExperiment) {
                 if (supplies.get("test tube").getQuantityAvailable() < 1) {
+                    System.out.println("No enough test tubes");
                     return false;
                 } else if (supplies.get("caps").getQuantityAvailable() < 1) {
+                    System.out.println("No enough caps");
                     return false;
                 }
                 if(sumOfNeeds.containsKey("test tube"))
@@ -45,19 +46,31 @@ public class SupplyManager implements Observer, Manager{
                 ReagentExperiment reagentExperiment = (ReagentExperiment) experiment;
                 int flaskNum = 0;
                 for (Reagent r : reagentExperiment.getReagents()) {
-                    if(!supplies.containsKey(r.getReagentName()))
+                    System.out.println(r.getReagentName());
+                    if(!supplies.containsKey(r.getReagentName())) {
+                        System.out.println("There is no reagent named " + r.getReagentName());
                         return false;
-                    if (supplies.get(r.getReagentName()).getQuantityAvailable() < r.getQuantity())
+                    }
+                    if (supplies.get(r.getReagentName()).getQuantityAvailable() < r.getQuantity()) {
+                        System.out.println("No enough reagent named " + r.getReagentName());
                         return false;
+                    }
                     if(sumOfNeeds.containsKey(r.getReagentName()))
                         sumOfNeeds.put(r.getReagentName(), sumOfNeeds.get(r.getReagentName()) + r.getQuantity());
                     else
                         sumOfNeeds.put(r.getReagentName(), r.getQuantity());
                     flaskNum++;
                 }
-                if (supplies.get("sealed flask").getQuantityAvailable() < flaskNum)
+                if (supplies.get("sealed flask").getQuantityAvailable() < flaskNum) {
+                    System.out.println("No enough sealed flask");
                     return false;
+                }
                 sumOfNeeds.put("sealed flask", flaskNum);
+            }
+        }
+        for(String str : sumOfNeeds.keySet()) {
+            if(supplies.get(str).getQuantityAvailable() < sumOfNeeds.get(str)) {
+                System.out.println("Not enough supply named " + str + " in total");
             }
         }
         for(String str : sumOfNeeds.keySet()) {
@@ -68,6 +81,10 @@ public class SupplyManager implements Observer, Manager{
 
     public void addSupply(Supply supply) {
         this.supplies.put(supply.getName(), supply);
+    }
+
+    public void setSupplies(HashMap<String, Supply> supplies) {
+        this.supplies = supplies;
     }
 
     public boolean setSupply (String name, int quantity) {

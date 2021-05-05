@@ -76,7 +76,9 @@ public class SampleExperiment implements Experiment{
     public String getLabel() {
         return "Sample Ex ID: " + experimentID + ", Name: " + experimentName;
     }
-    public JSONObject toJSONObject(){
+
+    @Override
+    public JSONObject getJSONObject(){
         JSONObject experimentInfo = new JSONObject();
         experimentInfo.put("experiment_id", "TEST_ID");
         experimentInfo.put("experiment_name","TEST_Name");
