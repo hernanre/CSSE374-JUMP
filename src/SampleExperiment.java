@@ -99,7 +99,7 @@ public class SampleExperiment implements Experiment{
 
 //       JSONWriter
         JSONObject command3 = new JSONObject();
-        command3.put("command", "C19");
+        command3.put("command", "C5");
 
         commands.add(command1);
         commands.add(command2);
