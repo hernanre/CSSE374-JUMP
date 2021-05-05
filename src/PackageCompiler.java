@@ -1,4 +1,4 @@
-import org.json.simple.*;
+import org.json.simple.JSONObject;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -13,6 +13,7 @@ public class PackageCompiler implements Subject{
     private HashSet<Manager> managers;
 
     public PackageCompiler() {
+
         this.observers = new HashSet<>();
         this.managers = new HashSet<>();
     }
@@ -25,7 +26,17 @@ public class PackageCompiler implements Subject{
         }
         System.out.println("Approved");
         //Exp -> JSONObject
-        //toJSONfile()
+        ArrayList<JSONObject> expJson = new ArrayList<JSONObject>();
+        for (Experiment e: experiments){
+            expJson.add(e.getJSONObject());
+        }
+        try {
+            File tosend = toJSONfile(expJson);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
+
         return true;
     }
 
@@ -65,7 +76,7 @@ public class PackageCompiler implements Subject{
     }
 
     @Override
-    public void notifyObservers(Experiment e) {
+    public void notifyObservers() {
 
     }
 }

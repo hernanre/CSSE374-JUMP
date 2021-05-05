@@ -1,3 +1,5 @@
+import org.json.simple.JSONObject;
+
 import java.util.ArrayList;
 
 public class ComplexExperiment implements Experiment {
@@ -38,6 +40,11 @@ public class ComplexExperiment implements Experiment {
     @Override
     public String getStatus() {
         return status;
+    }
+
+    @Override
+    public JSONObject getJSONObject() {
+        return null;
     }
 }
 

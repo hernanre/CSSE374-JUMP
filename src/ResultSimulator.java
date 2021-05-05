@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class ResultSimulator {
+
     public File createResults(File file) throws IOException {
         Random random = new Random();
         File resultFile = new File("src/ResultJSON.json");
@@ -41,7 +42,6 @@ public class ResultSimulator {
         fr.write(jSON.toJSONString());
 //       file.append(jSON.toString(1));
         fr.close();
-
 
         return resultFile;
     }

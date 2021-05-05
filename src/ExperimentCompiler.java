@@ -93,7 +93,7 @@ public class ExperimentCompiler implements Subject {
     }
 
     @Override
-    public void notifyObservers(Experiment e) {
+    public void notifyObservers() {
 
     }
 
