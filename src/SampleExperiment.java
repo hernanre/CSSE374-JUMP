@@ -1,5 +1,6 @@
 import org.json.simple.*;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 
 public class SampleExperiment implements Experiment{
@@ -73,10 +74,10 @@ public class SampleExperiment implements Experiment{
         JSONObject commandFirstHalf = new JSONObject();
         JSONObject command2 = new JSONObject();
 
-        String params[] = new String[1];
-        params[0] = "HPGC-1";
+        ArrayList<String> params = new ArrayList<>();
+        params.add("HPGC-1");
         params.toString();
-        command2.put("param", "test");
+        command2.put("param", params.toString());
         command2.put("command", "C15");
 
 
