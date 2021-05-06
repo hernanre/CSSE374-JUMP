@@ -46,7 +46,6 @@ public class SupplyManager implements Observer, Manager{
                 ReagentExperiment reagentExperiment = (ReagentExperiment) experiment;
                 int flaskNum = 0;
                 for (Reagent r : reagentExperiment.getReagents()) {
-                    System.out.println(r.getReagentName());
                     if(!supplies.containsKey(r.getReagentName())) {
                         System.out.println("There is no reagent named " + r.getReagentName());
                         return false;
@@ -100,14 +99,16 @@ public class SupplyManager implements Observer, Manager{
     @Override
     public void extractResults(JSONObject data) {
         JSONArray suppliesResults = (JSONArray) data.get("inventory");
-        for (String s: supplies.keySet()){
-            for (int i = 0 ; i < suppliesResults.size(); i++) {
-                JSONObject obj = (JSONObject) suppliesResults.get(i);
-                if (obj.containsKey("liquid O2")){
-                    long quantity = (long) obj.get("liquid O2");
-                    supplies.get(s).setQuantityAvailable( (int) quantity);
-                }
+        for (int i = 0 ; i < suppliesResults.size(); i++) {
+            JSONObject obj = (JSONObject) suppliesResults.get(i);
+            for (Object o : obj.keySet()) {
+                long quantity = (long) obj.get((String) o);
+                supplies.get((String) o).setQuantityAvailable((int) quantity);
             }
+        }
+        System.out.println("Supply Manager is notified");
+        for(Supply s : supplies.values()) {
+            System.out.println(s);
         }
     }
 

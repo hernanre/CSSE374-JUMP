@@ -1,1 +1,1 @@
-{"payload":{"experiment1":{"experiment_name":"Name: ","experiment_id":"ID: ","experiment_commands":[{"param":"[H2, 1]","command":"C6"},{"command":"C19"},{"command":"C8"},{"command":"C4"}],"experiment_type":"Reagent-Based"}}}
+{"payload":{"experiment1":{"experiment_name":"Name: ","experiment_id":"ID: ","experiment_commands":[{"param":"[H2, 100]","command":"C6"},{"command":"C19"},{"command":"C8"},{"command":"C4"}],"experiment_type":"Reagent-Based"}}}

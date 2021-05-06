@@ -43,7 +43,6 @@ public class CommunicationManager implements Subject{
             result = (JSONObject) obj;
             data = (JSONObject) result.get("return-status");
             this.notifyObservers();
-
         }catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
