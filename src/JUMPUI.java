@@ -84,7 +84,7 @@ public class JUMPUI {
                 } catch (NumberFormatException e1) {
                     quantity = -1;
                 }
-                experimentCompiler.compileSampleOnly(IDTextField.getText(), nameTextField.getText(),
+                experimentCompiler.compileSampleOnly(nameTextField.getText(), IDTextField.getText(),
                         typeTextField.getText(), quantity, unitTextField.getText(),
                         locationTextField.getText());
                 IDTextField.setText("");

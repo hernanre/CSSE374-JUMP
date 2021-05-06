@@ -80,8 +80,8 @@ public class SampleExperiment implements Experiment{
     @Override
     public JSONObject getJSONObject(){
         JSONObject experimentInfo = new JSONObject();
-        experimentInfo.put("experiment_id", "TEST_ID");
-        experimentInfo.put("experiment_name","TEST_Name");
+        experimentInfo.put("experiment_id", this.experimentID);
+        experimentInfo.put("experiment_name",this.experimentName);
         experimentInfo.put("experiment_type", "Sample-Only");
 
         JSONArray commands = new JSONArray();

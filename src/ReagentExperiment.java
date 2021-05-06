@@ -7,7 +7,7 @@ public class ReagentExperiment implements Experiment {
     private String ID, name, status;
     private ArrayList<Reagent> reagents;
 
-    public ReagentExperiment(String ID, String name, ArrayList<Reagent> reagents){
+    public ReagentExperiment(String name, String ID, ArrayList<Reagent> reagents){
         this.name = name;
         this.ID = ID;
         this.reagents = reagents;
@@ -34,7 +34,7 @@ public class ReagentExperiment implements Experiment {
 
     @Override
     public String getLabel() {
-        return "Experiment ID: " + ID + ", Name: " + name;
+        return "Reagent Ex ID: " + ID + ", Name: " + name;
     }
 
     @Override
@@ -52,8 +52,8 @@ public class ReagentExperiment implements Experiment {
     }
     public JSONObject getJSONObject(){
         JSONObject experimentInfo = new JSONObject();
-        experimentInfo.put("experiment_id", this.name);
-        experimentInfo.put("experiment_name",this.getID());
+        experimentInfo.put("experiment_id", this.getID());
+        experimentInfo.put("experiment_name",this.name);
         experimentInfo.put("experiment_type", "Reagent-Based");
 
         JSONArray commands = new JSONArray();

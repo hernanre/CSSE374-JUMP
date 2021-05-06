@@ -1,1 +1,1 @@
-{"payload":{"experiment1":{"experiment_name":"Name: ","experiment_id":"ID: ","experiment_commands":[{"param":"[H2, 100]","command":"C6"},{"command":"C19"},{"command":"C8"},{"command":"C4"}],"experiment_type":"Reagent-Based"}}}
+{"payload":{"experiment1":{"experiment_name":"Sname","experiment_id":"S1","experiment_commands":[{"command":"C19"},{"param":"[HPGC-1]","command":"C15"},{"command":"C5"}],"experiment_type":"Sample-Only"}}}
