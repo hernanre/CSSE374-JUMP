@@ -33,6 +33,7 @@ public class ExperimentManager implements Observer, Manager{
 
     @Override
     public void extractResults(JSONObject data) {
+        System.out.println("\n");
         JSONArray experimentsResults = (JSONArray) data.get("experiment_status");
         for (Experiment e: experiments){
             for (int i = 0 ; i < experimentsResults.size(); i++) {
@@ -43,5 +44,9 @@ public class ExperimentManager implements Observer, Manager{
                 }
             }
         }
+        for(Experiment experiment : experiments) {
+            System.out.println(experiment.getLabel() + " " + experiment.getStatus());
+        }
+        System.out.println("\n");
     }
 }

@@ -34,7 +34,7 @@ public class ReagentExperiment implements Experiment {
 
     @Override
     public String getLabel() {
-        return "Sample ID: " + ID + ", Name: " + name;
+        return "Experiment ID: " + ID + ", Name: " + name;
     }
 
     @Override

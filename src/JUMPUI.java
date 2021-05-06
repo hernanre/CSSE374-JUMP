@@ -87,27 +87,35 @@ public class JUMPUI {
                 experimentCompiler.compileSampleOnly(IDTextField.getText(), nameTextField.getText(),
                         typeTextField.getText(), quantity, unitTextField.getText(),
                         locationTextField.getText());
+                IDTextField.setText("");
+                nameTextField.setText("");
+                typeTextField.setText("");
+                quantityTextField.setText("");
+                unitTextField.setText("");
+                locationTextField.setText("");
             }
         });
 
 
         //Reagent Based
-        JLabel reagentExID = new JLabel("ID: ");
-        sampleOnlyTab.add(sampleExID);
 
-        JTextField reagentIDTextField = new JTextField();
-        sampleOnlyTab.add(IDTextField);
 
-        JLabel reagentExName = new JLabel("Name: ");
-        sampleOnlyTab.add(sampleExName);
-
-        JTextField reagentNameTextField = new JTextField();
-        sampleOnlyTab.add(nameTextField);
-
-        JPanel reagentBasedTab = new JPanel(new GridLayout(6,2));
+        JPanel reagentBasedTab = new JPanel(new GridLayout(8,2));
         tabPanel.addTab("Reagent Based", null, reagentBasedTab,
                 "Reagent Based");
         reagentBasedTab.setBorder(new TitledBorder(new EtchedBorder(), "Reagent Based Experiments"));
+        JLabel reagentExID = new JLabel("ID: ");
+        reagentBasedTab.add(reagentExID);
+
+        JTextField reagentIDTextField = new JTextField();
+        reagentBasedTab.add(reagentIDTextField);
+
+        JLabel reagentExName = new JLabel("Exp Name: ");
+        reagentBasedTab.add(reagentExName);
+
+        JTextField reagentNameTextField = new JTextField();
+        reagentBasedTab.add(reagentNameTextField);
+
         JLabel reagentName = new JLabel("Reagent Name: ");
         reagentBasedTab.add(reagentName);
         JTextField reagentNameField = new JTextField();
@@ -180,8 +188,10 @@ public class JUMPUI {
                     detailsArea.setText("");
                     measurementsArea.setText("");
                     reagents.add(reagent);
-                    experimentCompiler.compileReagentExperiment(reagentExName.getText(), reagentExID.getText(),
+                    experimentCompiler.compileReagentExperiment(reagentNameTextField.getText(), reagentIDTextField.getText(),
                             reagents);
+                    reagentNameTextField.setText("");
+                    reagentIDTextField.setText("");
                     reagentNameField.setText("");
                     reagentQuantityField.setText("");
                     reagentTimeField.setText("");
@@ -248,23 +258,25 @@ public class JUMPUI {
                 managerTab.removeAll();
                 managerTab.add(refresh);
                 for(Experiment experiment : experimentManager.getExperiments()) {
-                    JCheckBox checkBox = new JCheckBox();
-                    JLabel exp = new JLabel();
-                    exp.setText(experiment.getLabel());
-                    checkBox.addActionListener(new ActionListener() {
-                        @Override
-                        public void actionPerformed(ActionEvent e) {
-                            if(checkBox.isSelected()) {
-                                System.out.println("Add an experiment to the Package");
-                                experiments.add(experiment);
-                            } else {
-                                System.out.println("Delete an experiment from the Package");
-                                experiments.remove(experiment);
+                    if(experiment.getStatus().equals("Entered")) {
+                        JCheckBox checkBox = new JCheckBox();
+                        JLabel exp = new JLabel();
+                        exp.setText(experiment.getLabel());
+                        checkBox.addActionListener(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+                                if (checkBox.isSelected()) {
+                                    System.out.println("Add an experiment to the Package");
+                                    experiments.add(experiment);
+                                } else {
+                                    System.out.println("Delete an experiment from the Package");
+                                    experiments.remove(experiment);
+                                }
                             }
-                        }
-                    });
-                    managerTab.add(checkBox);
-                    managerTab.add(exp);
+                        });
+                        managerTab.add(checkBox);
+                        managerTab.add(exp);
+                    }
                 }
                 managerTab.add(managerSubmit);
             }

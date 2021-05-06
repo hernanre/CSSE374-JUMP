@@ -60,6 +60,7 @@ public class ComponentManager implements Observer, Manager{
 
     @Override
     public void extractResults(JSONObject data) {
+        System.out.println("\n");
         JSONArray componentsResults = (JSONArray) data.get("capabilities");
         for (Component c: components){
             for (int i = 0 ; i < componentsResults.size(); i++) {
@@ -70,6 +71,11 @@ public class ComponentManager implements Observer, Manager{
                 }
             }
         }
+
+        for(Component c  : components) {
+            System.out.println(c.getName() + " " + c.getStatus());
+        }
+        System.out.println("\n");
     }
 
     @Override
