@@ -1,3 +1,5 @@
+package Business;
+
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -9,7 +11,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class CommunicationManager implements Subject{
+public class CommunicationManager implements Subject {
     JSONObject result = null;
     JSONArray supplies, experiments, components;
     JSONParser parser = new JSONParser();;

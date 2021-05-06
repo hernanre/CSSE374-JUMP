@@ -1,3 +1,5 @@
+package Data;
+
 public class Component {
     private String type;
     private String id;
@@ -56,7 +58,7 @@ public class Component {
 
     @Override
     public String toString() {
-        return "Component{" +
+        return "Data.Component{" +
                 "type='" + type + '\'' +
                 ", id='" + id + '\'' +
                 ", name='" + name + '\'' +

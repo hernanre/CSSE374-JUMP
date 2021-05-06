@@ -1,8 +1,9 @@
+import Business.ExperimentCompiler;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.HashMap;
 
 public class UserLogIn {
 
@@ -63,7 +64,7 @@ public class UserLogIn {
             System.out.println("Login Successfully");
             myFrame.setVisible(false);
             myFrame.dispose();
-            //new JUMPUI(this.experimentCompiler);
+            //new Presentation.JUMPUI(this.experimentCompiler);
         } else {
             System.out.println("Wrong username/password");
         }

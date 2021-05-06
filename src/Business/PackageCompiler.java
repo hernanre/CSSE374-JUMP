@@ -1,3 +1,6 @@
+package Business;
+
+import Data.Experiment;
 import org.json.simple.JSONObject;
 
 import java.io.File;
@@ -7,7 +10,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.PriorityQueue;
 
-public class PackageCompiler implements Subject{
+public class PackageCompiler implements Subject {
 
     private HashSet<Observer> observers;
     private HashSet<Manager> managers;

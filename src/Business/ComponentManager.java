@@ -1,3 +1,9 @@
+package Business;
+
+import Data.Component;
+import Data.Experiment;
+import Data.ReagentExperiment;
+import Data.SampleExperiment;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
@@ -37,7 +43,7 @@ public class ComponentManager implements Observer, Manager{
                     }
                 }
                 check += 1;
-            } else if (experiment instanceof ReagentExperiment&&
+            } else if (experiment instanceof ReagentExperiment &&
                     check != 2 && check != 3 && check != 6 && check != 7) {
                 for (Component c : components) {
                     if (c.getType().equals("ARM") && c.getStatus().equals("Failed")) {

@@ -1,3 +1,7 @@
+package Presentation;
+import Business.*;
+import Data.*;
+
 import javax.swing.*;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
@@ -97,13 +101,13 @@ public class JUMPUI {
         });
 
 
-        //Reagent Based
+        //Data.Reagent Based
 
 
         JPanel reagentBasedTab = new JPanel(new GridLayout(8,2));
         tabPanel.addTab("Reagent Based", null, reagentBasedTab,
                 "Reagent Based");
-        reagentBasedTab.setBorder(new TitledBorder(new EtchedBorder(), "Reagent Based Experiments"));
+        reagentBasedTab.setBorder(new TitledBorder(new EtchedBorder(), "Data.Reagent Based Experiments"));
         JLabel reagentExID = new JLabel("ID: ");
         reagentBasedTab.add(reagentExID);
 
@@ -116,11 +120,11 @@ public class JUMPUI {
         JTextField reagentNameTextField = new JTextField();
         reagentBasedTab.add(reagentNameTextField);
 
-        JLabel reagentName = new JLabel("Reagent Name: ");
+        JLabel reagentName = new JLabel("Data.Reagent Name: ");
         reagentBasedTab.add(reagentName);
         JTextField reagentNameField = new JTextField();
         reagentBasedTab.add(reagentNameField);
-        JLabel reagentQuantity = new JLabel("Reagent Quantity: ");
+        JLabel reagentQuantity = new JLabel("Data.Reagent Quantity: ");
         reagentBasedTab.add(reagentQuantity);
         JTextField reagentQuantityField = new JTextField();
         reagentBasedTab.add(reagentQuantityField);
@@ -198,7 +202,7 @@ public class JUMPUI {
                     detailsArea.setText("");
                     measurementsArea.setText("");
                     reagents.clear();
-                    System.out.println("Reagent Experiment created");
+                    System.out.println("Data.Reagent Data.Experiment created");
                 } catch (NumberFormatException e1) {
                     System.out.println("Please input a number for quantity and time");
                 } catch (IndexOutOfBoundsException e2) {
@@ -233,13 +237,13 @@ public class JUMPUI {
             }
         });
 
-        //Manager
+        //Business.Manager
         JPanel managerTab = new JPanel();
         tabPanel.addTab("Manager", null, managerTab,
                 "Manager");
         PriorityQueue<Experiment> experiments = new PriorityQueue<>(
                 (o1, o2) -> o1.getPriority() - o2.getPriority());
-        managerTab.setBorder(new TitledBorder(new EtchedBorder(), "Manager"));
+        managerTab.setBorder(new TitledBorder(new EtchedBorder(), "Business.Manager"));
         JButton managerSubmit = new JButton("Submit");
         managerSubmit.addActionListener(new ActionListener() {
             @Override

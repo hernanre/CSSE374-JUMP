@@ -1,3 +1,6 @@
+package Business;
+
+import Data.*;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONArray;
 import java.util.ArrayList;
@@ -91,7 +94,7 @@ public class SupplyManager implements Observer, Manager{
             supplies.get(name).setQuantityAvailable(quantity);
             return true;
         } else {
-            System.out.println("Unknown Supply");
+            System.out.println("Unknown Data.Supply");
             return false;
         }
     }
@@ -106,7 +109,7 @@ public class SupplyManager implements Observer, Manager{
                 supplies.get((String) o).setQuantityAvailable((int) quantity);
             }
         }
-        System.out.println("Supply Manager is notified");
+        System.out.println("Data.Supply Business.Manager is notified");
         for(Supply s : supplies.values()) {
             System.out.println(s);
         }

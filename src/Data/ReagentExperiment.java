@@ -1,3 +1,5 @@
+package Data;
+
 import java.util.ArrayList;
 import org.json.simple.*;
 
@@ -34,7 +36,7 @@ public class ReagentExperiment implements Experiment {
 
     @Override
     public String getLabel() {
-        return "Reagent Ex ID: " + ID + ", Name: " + name;
+        return "Data.Reagent Ex ID: " + ID + ", Name: " + name;
     }
 
     @Override
@@ -54,7 +56,7 @@ public class ReagentExperiment implements Experiment {
         JSONObject experimentInfo = new JSONObject();
         experimentInfo.put("experiment_id", this.getID());
         experimentInfo.put("experiment_name",this.name);
-        experimentInfo.put("experiment_type", "Reagent-Based");
+        experimentInfo.put("experiment_type", "Data.Reagent-Based");
 
         JSONArray commands = new JSONArray();
 

@@ -1,3 +1,5 @@
+package Data;
+
 public class Supply {
     private String name;
     private int quantityAvailable;
@@ -59,7 +61,7 @@ public class Supply {
 
     @Override
     public String toString() {
-        return "Supply{" +
+        return "Data.Supply{" +
                 "name='" + name + '\'' +
                 ", quantityAvailable=" + quantityAvailable +
                 ", quantityOriginally=" + quantityOriginally +

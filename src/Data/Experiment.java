@@ -1,3 +1,5 @@
+package Data;
+
 import org.json.simple.JSONObject;
 
 public interface Experiment{
