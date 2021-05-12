@@ -286,6 +286,27 @@ public class JUMPUI {
             }
         });
 
+        //Macro Tab
+        JPanel macroTab = new JPanel(new GridLayout(3,2));
+        tabPanel.addTab("Macro", null, macroTab,
+                "Macro Command");
+        JLabel macroName = new JLabel("Macro Name: ");
+        macroTab.add(macroName);
+        JTextField macroNameTextField = new JTextField();
+        macroTab.add(macroNameTextField);
+        JLabel commands = new JLabel("Commands");
+        macroTab.add(commands);
+        JTextArea commandsTextArea = new JTextArea();
+        macroTab.add(commandsTextArea);
+        JButton macroCreate = new JButton("Create Macro");
+        macroCreate.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
+        macroTab.add(macroCreate);
+
 
         myFrame.add(tabPanel);
         myFrame.setVisible(true);
