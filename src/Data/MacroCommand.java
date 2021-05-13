@@ -3,12 +3,19 @@ package Data;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
+import java.util.ArrayList;
+
 public class MacroCommand implements Command{
-    Command[] commands;
+    ArrayList<Command> commands;
     public String name;
-    public MacroCommand(String name, Command[] commands){
+
+    public MacroCommand(String name){
         this.name = name;
-        this.commands = commands;
+        commands = new ArrayList<>();
+    }
+
+    public void addCommand(Command command) {
+        commands.add(command);
     }
 
     public JSONObject toJson() {

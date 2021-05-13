@@ -12,6 +12,7 @@ public class Main {
         CommunicationManager communicationManager = new CommunicationManager();
         ExperimentCompiler experimentCompiler = new ExperimentCompiler();
         PackageCompiler packageCompiler = new PackageCompiler(communicationManager);
+        CommandCompiler commandCompiler = new CommandCompiler();
 
         ExperimentManager experimentManager = new ExperimentManager();
         ComponentManager componentManager = new ComponentManager();
@@ -41,7 +42,7 @@ public class Main {
         communicationManager.registerObserver(componentManager);
         communicationManager.registerObserver(supplyManager);
 
-        new JUMPUI(experimentCompiler, packageCompiler, experimentManager);
+        new JUMPUI(experimentCompiler, packageCompiler, experimentManager, commandCompiler);
     }
 
 }

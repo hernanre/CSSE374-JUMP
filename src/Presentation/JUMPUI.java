@@ -21,11 +21,14 @@ public class JUMPUI {
     private ExperimentCompiler experimentCompiler;
     private ExperimentManager experimentManager;
     private PackageCompiler packageCompiler;
+    private CommandCompiler commandCompiler;
 
-    public JUMPUI(ExperimentCompiler experimentCompiler, PackageCompiler packageCompiler, ExperimentManager experimentManager) {
+    public JUMPUI(ExperimentCompiler experimentCompiler, PackageCompiler packageCompiler,
+                  ExperimentManager experimentManager, CommandCompiler commandCompiler) {
         this.experimentCompiler = experimentCompiler;
         this.packageCompiler = packageCompiler;
         this.experimentManager = experimentManager;
+        this.commandCompiler = commandCompiler;
 
         myFrame = new JFrame();
         myFrame.setSize(800, 400);
@@ -287,22 +290,53 @@ public class JUMPUI {
         });
 
         //Macro Tab
-        JPanel macroTab = new JPanel(new GridLayout(3,2));
+        JPanel macroTab = new JPanel(new GridLayout(4,2));
         tabPanel.addTab("Macro", null, macroTab,
                 "Macro Command");
         JLabel macroName = new JLabel("Macro Name: ");
         macroTab.add(macroName);
         JTextField macroNameTextField = new JTextField();
         macroTab.add(macroNameTextField);
-        JLabel commands = new JLabel("Commands");
-        macroTab.add(commands);
-        JTextArea commandsTextArea = new JTextArea();
-        macroTab.add(commandsTextArea);
+        JLabel commandID = new JLabel("Basic Command ID: ");
+        macroTab.add(commandID);
+        JTextField commandIDField = new JTextField();
+        macroTab.add(commandIDField);
+        JLabel commandInputs = new JLabel("Inputs: ");
+        macroTab.add(commandInputs);
+        JTextField commandsInputField = new JTextField();
+        macroTab.add(commandsInputField);
+        JButton addBasicCommand = new JButton("Add Basic Command");
+        macroTab.add(addBasicCommand);
+        addBasicCommand.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    commandCompiler.addBasicCommand(macroNameTextField.getText(), commandIDField.getText(), commandsInputField.getText());
+                } catch (IndexOutOfBoundsException e1) {
+                    System.out.println("Please input the correct number of inputs");
+                } catch (NumberFormatException e2) {
+                    System.out.println("Please input numbers");
+                }
+                commandIDField.setText("");
+                commandsInputField.setText("");
+            }
+        });
         JButton macroCreate = new JButton("Create Macro");
         macroCreate.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                try {
+                    commandCompiler.addBasicCommand(macroNameTextField.getText(), commandIDField.getText(), commandsInputField.getText());
+                } catch (IndexOutOfBoundsException e1) {
+                    System.out.println("Please input the correct number of inputs");
 
+                } catch (NumberFormatException e2) {
+                    System.out.println("Please input numbers");
+                }
+                System.out.println(commandCompiler.getMacro(macroNameTextField.getText()).toJson().toJSONString());
+                commandIDField.setText("");
+                commandsInputField.setText("");
+                macroNameTextField.setText("");
             }
         });
         macroTab.add(macroCreate);
