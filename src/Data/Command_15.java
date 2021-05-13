@@ -1,5 +1,6 @@
 package Data;
 
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 public class Command_15 implements Command{
@@ -17,6 +18,15 @@ public class Command_15 implements Command{
 
     @Override
     public JSONObject toJson() {
-        return null;
+
+        JSONArray array = new JSONArray();
+        array.add(x);
+        array.add(y);
+        array.add(z);
+
+        JSONObject json = new JSONObject();
+        json.put("command", commandID);
+        json.put("params" ,array);
+        return json;
     }
 }

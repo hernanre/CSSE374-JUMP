@@ -1,6 +1,6 @@
 package Data;
 
-import org.json.simple.JSONObject;
+import org.json.simple.*;
 
 public class Command_18 implements Command{
     private final String commandID = "C18";
@@ -13,6 +13,12 @@ public class Command_18 implements Command{
 
     @Override
     public JSONObject toJson() {
-        return null;
+        JSONArray array = new JSONArray();
+        array.add(mode);
+
+        JSONObject json = new JSONObject();
+        json.put("command", commandID);
+        json.put("params" ,array);
+        return json;
     }
 }
