@@ -1,5 +1,6 @@
 package Data;
 
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 public class MacroCommand implements Command{
@@ -12,9 +13,11 @@ public class MacroCommand implements Command{
 
     public JSONObject toJson() {
         JSONObject macro = new JSONObject();
+        JSONArray coms =  new JSONArray();
        for (Command command: commands){
-
+        coms.add(command.toJson());
        }
+       macro.put(name, coms);
        return macro;
     }
 }
