@@ -11,6 +11,8 @@ public class Command_20 implements Command{
 
     @Override
     public JSONObject toJson() {
-        return null;
+        JSONObject json = new JSONObject();
+        json.put("command", commandID);
+        return json;
     }
 }
