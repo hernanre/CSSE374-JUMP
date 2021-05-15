@@ -54,28 +54,32 @@ public class ExperimentCompiler implements Subject {
     }
 
     public void compileComplexExperiment(String str) {
-        ArrayList<ArrayList<String>> commandList = new ArrayList<>();
-        try {
-             commandList = parseCommandList(str);
-        } catch (IndexOutOfBoundsException e) {
-            System.out.println("Failed to add");
-            return;
-        }
-//        for (ArrayList<String> a : commandList) {
-//            for (String s : a)
-//                System.out.print(s + ";");
-//            System.out.println();
-//        }
-        boolean valid = true;
-        //Experiment e = new ComplexExperiment();
+//
+        CommandCompiler ccp = new CommandCompiler();
+        ArrayList<Command> cmds = new ArrayList<>();
+        String[] sep = str.split(";", -1);
+        for (String cmd: sep){
+            String[] first = cmd.split(",", 2);
+            Command toadd = null;
+            try {
+                if (first.length > 1) {
+                    toadd = ccp.parseBasicCommand(first[0].trim(), first[1].trim());
 
-        if (valid) {
-            for (Manager manager : managers) {
-                //manager.addExperiment(e);
+                } else {
+                    toadd = ccp.parseBasicCommand(first[0].trim(), "");
+                }
+            }catch (NumberFormatException e){
+                System.out.println(e);
+                return;
+            }catch (IndexOutOfBoundsException e){
+                System.out.println(e);
+                return;
             }
-            System.out.println("Added");
-        } else {
-            System.out.println("Failed to add");
+            cmds.add(toadd);
+        }
+        ComplexExperiment cpxEx = new ComplexExperiment(cmds);
+        for (Manager manager : managers) {
+            manager.addExperiment(cpxEx);
         }
     }
 
@@ -125,4 +129,7 @@ public class ExperimentCompiler implements Subject {
         }
         return commandList;
     }
+
+
+
 }
