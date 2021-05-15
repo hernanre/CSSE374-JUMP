@@ -1,9 +1,6 @@
 package Business;
 
-import Data.Component;
-import Data.Experiment;
-import Data.ReagentExperiment;
-import Data.SampleExperiment;
+import Data.*;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
@@ -28,7 +25,7 @@ public class ComponentManager implements Observer, Manager{
         int check = 0;
         for(Experiment experiment : experiments) {
             if (experiment instanceof SampleExperiment &&
-                    check != 1 && check != 3 && check != 5 && check != 7) {
+                    check != 1 && check != 3) {
                 for (Component c : components) {
                     if (c.getType().equals("ARM") && c.getStatus().equals("Failed")) {
                         return false;
@@ -44,7 +41,7 @@ public class ComponentManager implements Observer, Manager{
                 }
                 check += 1;
             } else if (experiment instanceof ReagentExperiment &&
-                    check != 2 && check != 3 && check != 6 && check != 7) {
+                    check != 2 && check != 3) {
                 for (Component c : components) {
                     if (c.getType().equals("ARM") && c.getStatus().equals("Failed")) {
                         return false;
@@ -55,10 +52,9 @@ public class ComponentManager implements Observer, Manager{
                     }
                 }
                 check += 2;
-            }
-            //We only have sample only  and reagent based
-            if(check == 3) {
-                break;
+            } else if (experiment instanceof ComplexExperiment) {
+                ComplexExperiment complexExperiment = (ComplexExperiment) experiment;
+                ArrayList<Command> commands = complexExperiment.getCommandList();
             }
         }
         return true;

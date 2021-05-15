@@ -48,5 +48,9 @@ public class ComplexExperiment implements Experiment {
     public JSONObject getJSONObject() {
         return null;
     }
+
+    public ArrayList<Command> getCommandList() {
+        return commandList;
+    }
 }
 
