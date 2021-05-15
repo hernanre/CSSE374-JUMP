@@ -6,10 +6,10 @@ import java.util.ArrayList;
 
 public class ComplexExperiment implements Experiment {
     private String ID, name, status;
-    private ArrayList<ArrayList<String>> commandList;
+    private ArrayList<Command> commandList;
     private int priority;
 
-    public ComplexExperiment(ArrayList<ArrayList<String>> commandList) {
+    public ComplexExperiment(ArrayList<Command> commandList) {
         this.commandList = commandList;
         this.status = "Entered";
     }

@@ -67,11 +67,11 @@ public class ExperimentCompiler implements Subject {
 //            System.out.println();
 //        }
         boolean valid = true;
-        Experiment e = new ComplexExperiment(commandList);
+        //Experiment e = new ComplexExperiment();
 
         if (valid) {
             for (Manager manager : managers) {
-                manager.addExperiment(e);
+                //manager.addExperiment(e);
             }
             System.out.println("Added");
         } else {

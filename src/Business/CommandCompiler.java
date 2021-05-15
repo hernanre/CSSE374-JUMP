@@ -120,10 +120,14 @@ public class CommandCompiler {
                 command = new Command_20();
                 break;
             default:
-                System.out.println("No Basic Command Found");
+                if(macros.containsKey(commandID)) {
+                    command = macros.get(commandID);
+                }
                 break;
         }
-        System.out.println(command.toJson().toJSONString().toString());
+        if(command != null) {
+            System.out.println(command.toJson().toJSONString().toString());
+        }
         return command;
     }
 
