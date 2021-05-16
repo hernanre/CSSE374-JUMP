@@ -16,4 +16,8 @@ public class Command_11 implements Command {
         json.put("command", commandID);
         return json;
     }
+    @Override
+    public String getCommandID() {
+        return commandID;
+    }
 }

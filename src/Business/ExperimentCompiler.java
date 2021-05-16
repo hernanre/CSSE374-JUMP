@@ -9,10 +9,12 @@ public class ExperimentCompiler implements Subject {
 
     private HashSet<Observer> observers;
     private HashSet<Manager> managers;
+    private CommandCompiler commandCompiler;
 
-    public ExperimentCompiler() {
+    public ExperimentCompiler(CommandCompiler commandCompiler) {
         this.observers = new HashSet<>();
         this.managers = new HashSet<>();
+        this.commandCompiler = commandCompiler;
     }
 
     public void compileSampleOnly(String experimentName, String experimentID,
@@ -55,7 +57,6 @@ public class ExperimentCompiler implements Subject {
 
     public void compileComplexExperiment(String str) {
 //
-        CommandCompiler ccp = new CommandCompiler();
         ArrayList<Command> cmds = new ArrayList<>();
         String[] sep = str.split(";", -1);
         for (String cmd: sep){
@@ -63,10 +64,10 @@ public class ExperimentCompiler implements Subject {
             Command toadd = null;
             try {
                 if (first.length > 1) {
-                    toadd = ccp.parseBasicCommand(first[0].trim(), first[1].trim());
+                    toadd = commandCompiler.parseBasicCommand(first[0].trim(), first[1].trim());
 
                 } else {
-                    toadd = ccp.parseBasicCommand(first[0].trim(), "");
+                    toadd = commandCompiler.parseBasicCommand(first[0].trim(), "");
                 }
             }catch (NumberFormatException e){
                 System.out.println(e);
@@ -78,6 +79,9 @@ public class ExperimentCompiler implements Subject {
             cmds.add(toadd);
         }
         ComplexExperiment cpxEx = new ComplexExperiment(cmds);
+        for (Command command : cpxEx.getCommandList()) {
+            System.out.println(command.toJson().toJSONString());
+        }
         for (Manager manager : managers) {
             manager.addExperiment(cpxEx);
         }

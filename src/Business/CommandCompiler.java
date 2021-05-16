@@ -144,4 +144,12 @@ public class CommandCompiler {
             result.add(Integer.valueOf(strings[4].trim()));
         return result;
     }
+
+    public void deleteMacro (String macroName) {
+        if (!macros.containsKey(macroName)) {
+            System.out.println("No Macro named " + macroName);
+        } else {
+            macros.remove(macroName);
+        }
+    }
 }

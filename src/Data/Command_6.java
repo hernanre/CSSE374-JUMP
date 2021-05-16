@@ -26,4 +26,17 @@ public class Command_6 implements Command{
         json.put("params" ,array);
         return json;
     }
+
+    @Override
+    public String getCommandID() {
+        return commandID;
+    }
+
+    public int getAmount() {
+        return amount;
+    }
+
+    public String getReagent() {
+        return reagent;
+    }
 }

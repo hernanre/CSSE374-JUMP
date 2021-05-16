@@ -290,7 +290,7 @@ public class JUMPUI {
         });
 
         //Macro Tab
-        JPanel macroTab = new JPanel(new GridLayout(4,2));
+        JPanel macroTab = new JPanel(new GridLayout(5,2));
         tabPanel.addTab("Macro", null, macroTab,
                 "Macro Command");
         JLabel macroName = new JLabel("Macro Name: ");
@@ -340,6 +340,23 @@ public class JUMPUI {
             }
         });
         macroTab.add(macroCreate);
+        JButton macroDelete = new JButton("Delete Macro");
+        macroDelete.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    System.out.println(commandCompiler.getMacro(macroNameTextField.getText()).toJson().toJSONString());
+                } catch (NullPointerException e1) {
+                    e1.printStackTrace();
+                    System.out.println("Macro Not existing");
+                }
+                commandCompiler.deleteMacro(macroNameTextField.getText());
+                commandIDField.setText("");
+                commandsInputField.setText("");
+                macroNameTextField.setText("");
+            }
+        });
+        macroTab.add(macroDelete);
 
 
         myFrame.add(tabPanel);

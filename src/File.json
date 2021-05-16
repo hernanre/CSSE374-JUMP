@@ -1,1 +1,1 @@
-{"payload":{"experiment1":{"experiment_name":"Reagent Exp 1","experiment_id":"R1","experiment_commands":[{"param":"[H2, 2]","command":"C6"},{"command":"C19"},{"command":"C8"},{"command":"C4"}],"experiment_type":"Data.Reagent-Based"}}}
+{"payload":{"experiment1":{"experiment_name":"Test Complex Experiment","experiment_id":null,"experiment_commands":[{"params":[2,3,4],"command":"C2"},{"macro1":[{"params":[1,2,3],"command":"C1"},{"command":"C20"}]}],"experiment_type":"Complex"}}}

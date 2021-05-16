@@ -24,4 +24,12 @@ public class Command_9 implements Command{
         json.put("params" ,array);
         return json;
     }
+
+    public String getTool() {
+        return tool;
+    }
+    @Override
+    public String getCommandID() {
+        return commandID;
+    }
 }

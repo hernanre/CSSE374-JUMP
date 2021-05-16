@@ -15,4 +15,8 @@ public class Command_19 implements Command{
         json.put("command", commandID);
         return json;
     }
+    @Override
+    public String getCommandID() {
+        return commandID;
+    }
 }

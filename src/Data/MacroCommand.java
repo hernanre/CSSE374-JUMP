@@ -27,4 +27,12 @@ public class MacroCommand implements Command{
        macro.put(name, coms);
        return macro;
     }
+    @Override
+    public String getCommandID() {
+        return name;
+    }
+
+    public ArrayList<Command> getCommands() {
+        return commands;
+    }
 }

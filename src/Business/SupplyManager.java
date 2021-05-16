@@ -3,6 +3,8 @@ package Business;
 import Data.*;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONArray;
+
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -68,6 +70,22 @@ public class SupplyManager implements Observer, Manager{
                     return false;
                 }
                 sumOfNeeds.put("sealed flask", flaskNum);
+            } else if (experiment instanceof ComplexExperiment) {
+                ComplexExperiment complexExperiment = (ComplexExperiment) experiment;
+                HashMap<String, Integer> sum = new HashMap<>();
+                for (Command command : complexExperiment.getCommandList()) {
+                    mergeHashMap(sum, checkCommand(command));
+                }
+                for (String str : sum.keySet()) {
+                    if (!supplies.containsKey(str)) {
+                        System.out.println("There is no " + str);
+                        return false;
+                    } else if (supplies.get(str).getQuantityAvailable() < sum.get(str)) {
+                        System.out.println("There is not enough " + str);
+                        return false;
+                    }
+                }
+                mergeHashMap(sumOfNeeds, sum);
             }
         }
         for(String str : sumOfNeeds.keySet()) {
@@ -79,6 +97,35 @@ public class SupplyManager implements Observer, Manager{
             supplies.get(str).decreaseQuantityAvailable(sumOfNeeds.get(str));
         }
         return true;
+    }
+
+    public void mergeHashMap (HashMap<String, Integer> target, HashMap<String, Integer> toAdd) {
+        for (String str : toAdd.keySet()) {
+            if (target.containsKey(str))
+                target.put(str, target.get(str) + toAdd.get(str));
+            else
+                target.put(str, toAdd.get(str));
+        }
+    }
+
+    public HashMap<String, Integer> checkCommand (Command command) {
+        HashMap<String, Integer> result = new HashMap<>();
+        if (command instanceof Command_6) {
+            Command_6 command_6 = (Command_6) command;
+            result.put(command_6.getReagent(), command_6.getAmount());
+            result.put("sealed flask", 1);
+        } else if (command instanceof Command_7) {
+            result.put("sealed flask", 1);
+        } else if (command instanceof Command_20) {
+            result.put("test tube", 1);
+            result.put("caps", 1);
+        } else if (command instanceof MacroCommand) {
+            MacroCommand macroCommand = (MacroCommand) command;
+            for (Command c : macroCommand.getCommands()) {
+                mergeHashMap(result, checkCommand(c));
+            }
+        }
+        return result;
     }
 
     public void addSupply(Supply supply) {
@@ -114,7 +161,6 @@ public class SupplyManager implements Observer, Manager{
             System.out.println(s);
         }
     }
-
 
 
 }

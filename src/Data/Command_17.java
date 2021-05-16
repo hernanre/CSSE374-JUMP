@@ -28,4 +28,8 @@ public class Command_17 implements Command{
         json.put("params" ,array);
         return json;
     }
+    @Override
+    public String getCommandID() {
+        return commandID;
+    }
 }

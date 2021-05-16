@@ -23,7 +23,8 @@ class PackageCompilerTest {
     void initiate() {
         importManager = new ImportManager();
         communicationManager = new CommunicationManager();
-        experimentCompiler = new ExperimentCompiler();
+        CommandCompiler commandCompiler = new CommandCompiler();
+        experimentCompiler = new ExperimentCompiler(commandCompiler);
         packageCompiler = new PackageCompiler(communicationManager);
 
         experimentManager = new ExperimentManager();

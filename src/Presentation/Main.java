@@ -9,10 +9,10 @@ public class Main {
 
     public static void main(String[] args) {
         ImportManager importManager = new ImportManager();
-        CommunicationManager communicationManager = new CommunicationManager();
-        ExperimentCompiler experimentCompiler = new ExperimentCompiler();
-        PackageCompiler packageCompiler = new PackageCompiler(communicationManager);
         CommandCompiler commandCompiler = new CommandCompiler();
+        CommunicationManager communicationManager = new CommunicationManager();
+        ExperimentCompiler experimentCompiler = new ExperimentCompiler(commandCompiler);
+        PackageCompiler packageCompiler = new PackageCompiler(communicationManager);
 
         ExperimentManager experimentManager = new ExperimentManager();
         ComponentManager componentManager = new ComponentManager();

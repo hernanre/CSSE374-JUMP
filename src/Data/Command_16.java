@@ -24,4 +24,13 @@ public class Command_16 implements Command {
         json.put("params" ,array);
         return json;
     }
+
+    @Override
+    public String getCommandID() {
+        return commandID;
+    }
+
+    public String getSensor() {
+        return sensor;
+    }
 }
