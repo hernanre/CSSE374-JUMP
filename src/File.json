@@ -1,1 +1,1 @@
-{"payload":{"experiment1":{"experiment_name":"Test Complex Experiment","experiment_id":null,"experiment_commands":[{"params":[2,3,4],"command":"C2"},{"macro1":[{"params":[1,2,3],"command":"C1"},{"command":"C20"}]}],"experiment_type":"Complex"}}}
+{"payload":{"experiment1":{"experiment_name":"Test Complex Experiment","experiment_id":"C1","experiment_commands":[{"params":[1,2,3],"command":"C1"},{"params":[2,3,4],"command":"C2"},{"command":"C19"}],"experiment_type":"Complex"}}}

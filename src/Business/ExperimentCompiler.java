@@ -55,7 +55,7 @@ public class ExperimentCompiler implements Subject {
         }
     }
 
-    public void compileComplexExperiment(String str) {
+    public void compileComplexExperiment(String ID, String name, String str) {
 //
         ArrayList<Command> cmds = new ArrayList<>();
         String[] sep = str.split(";", -1);
@@ -78,7 +78,7 @@ public class ExperimentCompiler implements Subject {
             }
             cmds.add(toadd);
         }
-        ComplexExperiment cpxEx = new ComplexExperiment(cmds);
+        ComplexExperiment cpxEx = new ComplexExperiment(ID, name, cmds);
         for (Command command : cpxEx.getCommandList()) {
             System.out.println(command.toJson().toJSONString());
         }

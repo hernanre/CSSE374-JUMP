@@ -10,7 +10,9 @@ public class ComplexExperiment implements Experiment {
     private ArrayList<Command> commandList;
     private int priority;
 
-    public ComplexExperiment(ArrayList<Command> commandList) {
+    public ComplexExperiment(String ID, String name, ArrayList<Command> commandList) {
+        this.ID = ID;
+        this.name = name;
         this.commandList = commandList;
         this.status = "Entered";
     }
@@ -27,7 +29,7 @@ public class ComplexExperiment implements Experiment {
 
     @Override
     public String getLabel() {
-        return null;
+        return "Complex Ex ID: " + ID + ", Name: " + name;
     }
 
     @Override

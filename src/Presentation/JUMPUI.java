@@ -1,6 +1,7 @@
 package Presentation;
 import Business.*;
 import Data.*;
+import javafx.scene.shape.Box;
 
 import javax.swing.*;
 import javax.swing.border.EtchedBorder;
@@ -216,9 +217,18 @@ public class JUMPUI {
         reagentBasedTab.add(reagentSubmit);
 
         //Complex
-        JPanel complexTab = new JPanel(new GridLayout(3,1));
+        JPanel complexTab = new JPanel();
+        complexTab.setLayout(new BoxLayout(complexTab, BoxLayout.PAGE_AXIS));
         tabPanel.addTab("Complex", null, complexTab,
                 "Complex");
+        JLabel complexName = new JLabel("Name: ");
+        complexTab.add(complexName);
+        JTextField complexNameTextField = new JTextField();
+        complexTab.add(complexNameTextField);
+        JLabel complexID = new JLabel("ID: ");
+        complexTab.add(complexID);
+        JTextField complexIDTextField = new JTextField();
+        complexTab.add(complexIDTextField);
         JLabel commandList = new JLabel("Command List");
         complexTab.add(commandList);
         complexTab.setBorder(new TitledBorder(new EtchedBorder(), "Complex Experiments"));
@@ -236,7 +246,9 @@ public class JUMPUI {
         complexSubmit.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                experimentCompiler.compileComplexExperiment(commandListArea.getText());
+                experimentCompiler.compileComplexExperiment(complexIDTextField.getText(),
+                        complexNameTextField.getText(),
+                        commandListArea.getText());
             }
         });
 
