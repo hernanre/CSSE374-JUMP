@@ -1,6 +1,8 @@
 package Data;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+
 import org.json.simple.*;
 
 public class ReagentExperiment implements Experiment {
@@ -93,6 +95,32 @@ public class ReagentExperiment implements Experiment {
         commands.add(command3);
         experimentInfo.put("experiment_commands", commands);
         return experimentInfo;
+    }
+
+    @Override
+    public ArrayList<String> getComponentsNeeded() {
+        ArrayList<String> result = new ArrayList<>();
+        result.add("Arm-1");
+        result.add("Arm-2");
+        result.add("Arm-3");
+        result.add("E1");
+        result.add("E2");
+        return result;
+    }
+
+    @Override
+    public HashMap<String, Integer> getSupplyNeeded() {
+        HashMap<String, Integer> result = new HashMap<>();
+        int flaskNum = 0;
+        for (Reagent r : reagents) {
+            if (result.containsKey(r.getReagentName()))
+                result.put(r.getReagentName(), result.get(r.getReagentName())+r.getQuantity());
+            else
+                result.put(r.getReagentName(), r.getQuantity());
+            flaskNum++;
+        }
+        result.put("sealed flask", flaskNum);
+        return result;
     }
 
 }

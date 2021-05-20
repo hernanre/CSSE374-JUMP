@@ -8,7 +8,6 @@ import java.util.HashMap;
 
 public class CommandCompiler {
 
-    private CommandManager commandManager;
     private HashMap<String, MacroCommand> macros;
 
     public CommandCompiler() {
@@ -141,7 +140,7 @@ public class CommandCompiler {
         result.add(Integer.valueOf(strings[1].trim()));
         result.add(Integer.valueOf(strings[2].trim()));
         if (strings.length == 4)
-            result.add(Integer.valueOf(strings[4].trim()));
+            result.add(Integer.valueOf(strings[3].trim()));
         return result;
     }
 

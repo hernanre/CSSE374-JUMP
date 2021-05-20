@@ -4,6 +4,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class SampleExperiment implements Experiment{
 
@@ -111,7 +112,29 @@ public class SampleExperiment implements Experiment{
         experimentInfo.put("experiment_commands", commands);
         return experimentInfo;
     }
+
+    @Override
+    public ArrayList<String> getComponentsNeeded() {
+        ArrayList<String> result = new ArrayList<>();
+        result.add("Arm-1");
+        result.add("Arm-2");
+        result.add("Arm-3");
+        result.add("T1");
+        result.add("T2");
+        result.add("T3");
+        result.add("E1");
+        result.add("HPGC-1");
+        return result;
     }
+
+    @Override
+    public HashMap<String, Integer> getSupplyNeeded() {
+        HashMap<String, Integer> result = new HashMap<>();
+        result.put("caps", 1);
+        result.put("test tube", 1);
+        return result;
+    }
+}
 
 
 

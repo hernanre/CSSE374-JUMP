@@ -111,7 +111,7 @@ public class JUMPUI {
         JPanel reagentBasedTab = new JPanel(new GridLayout(8,2));
         tabPanel.addTab("Reagent Based", null, reagentBasedTab,
                 "Reagent Based");
-        reagentBasedTab.setBorder(new TitledBorder(new EtchedBorder(), "Data.Reagent Based Experiments"));
+        reagentBasedTab.setBorder(new TitledBorder(new EtchedBorder(), "Reagent Based Experiments"));
         JLabel reagentExID = new JLabel("ID: ");
         reagentBasedTab.add(reagentExID);
 
@@ -124,11 +124,11 @@ public class JUMPUI {
         JTextField reagentNameTextField = new JTextField();
         reagentBasedTab.add(reagentNameTextField);
 
-        JLabel reagentName = new JLabel("Data.Reagent Name: ");
+        JLabel reagentName = new JLabel("Reagent Name: ");
         reagentBasedTab.add(reagentName);
         JTextField reagentNameField = new JTextField();
         reagentBasedTab.add(reagentNameField);
-        JLabel reagentQuantity = new JLabel("Data.Reagent Quantity: ");
+        JLabel reagentQuantity = new JLabel("Reagent Quantity: ");
         reagentBasedTab.add(reagentQuantity);
         JTextField reagentQuantityField = new JTextField();
         reagentBasedTab.add(reagentQuantityField);
@@ -206,7 +206,7 @@ public class JUMPUI {
                     detailsArea.setText("");
                     measurementsArea.setText("");
                     reagents.clear();
-                    System.out.println("Data.Reagent Data.Experiment created");
+                    System.out.println("Reagent Experiment created");
                 } catch (NumberFormatException e1) {
                     System.out.println("Please input a number for quantity and time");
                 } catch (IndexOutOfBoundsException e2) {

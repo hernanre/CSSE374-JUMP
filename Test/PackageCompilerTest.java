@@ -1,4 +1,3 @@
-package Test;
 
 import Business.*;
 import Data.*;
@@ -14,6 +13,7 @@ class PackageCompilerTest {
     private CommunicationManager communicationManager;
     private ExperimentCompiler experimentCompiler;
     private PackageCompiler packageCompiler;
+    private CommandCompiler commandCompiler;
 
     private ExperimentManager experimentManager;
     private ComponentManager componentManager;
@@ -23,7 +23,7 @@ class PackageCompilerTest {
     void initiate() {
         importManager = new ImportManager();
         communicationManager = new CommunicationManager();
-        CommandCompiler commandCompiler = new CommandCompiler();
+        commandCompiler = new CommandCompiler();
         experimentCompiler = new ExperimentCompiler(commandCompiler);
         packageCompiler = new PackageCompiler(communicationManager);
 
@@ -55,7 +55,7 @@ class PackageCompilerTest {
         communicationManager.registerObserver(componentManager);
         communicationManager.registerObserver(supplyManager);
     }
-
+    @org.junit.jupiter.api.Test
     public void testSendExperiment() {
         initiate();
         Reagent reagent1 = new Reagent("H2", "ads", "asdf", 1, 1);
@@ -71,7 +71,7 @@ class PackageCompilerTest {
         packageCompiler.sendExperiment(experimentManager.getExperiments());
         experimentManager.getExperiments().forEach(experiment -> assertNotSame("Entered" ,experiment.getStatus()));
     }
-
+    @org.junit.jupiter.api.Test
     public void testSendFailForNonExistingReagent() {
         initiate();
         Reagent reagent1 = new Reagent("H2", "ads", "asdf", 1, 1);
@@ -89,7 +89,7 @@ class PackageCompilerTest {
         packageCompiler.sendExperiment(experimentManager.getExperiments());
         experimentManager.getExperiments().forEach(experiment -> assertSame("Entered" ,experiment.getStatus()));
     }
-
+    @org.junit.jupiter.api.Test
     public void testSendFailForUsingTooMuchReagent() {
         initiate();
         Reagent reagent1 = new Reagent("H2", "ads", "asdf", 1, 1);
@@ -106,6 +106,25 @@ class PackageCompilerTest {
         experimentCompiler.compileReagentExperiment("Reagent Exp 1", "R1", reagents);
         packageCompiler.sendExperiment(experimentManager.getExperiments());
         experimentManager.getExperiments().forEach(experiment -> assertSame("Entered" ,experiment.getStatus()));
+    }
+    @org.junit.jupiter.api.Test
+    public void testSendComplexExperiment() {
+        initiate();
+
+        experimentCompiler.compileComplexExperiment("Complex 1", "Complex 2", "C1,1,2,3;C20");
+        packageCompiler.sendExperiment(experimentManager.getExperiments());
+        experimentManager.getExperiments().forEach(experiment -> assertNotSame("Entered" ,experiment.getStatus()));
+    }
+    @org.junit.jupiter.api.Test
+    public void testSendComplexExperimentWithMacro() {
+        initiate();
+        initiate();
+        commandCompiler.addBasicCommand("Macro1" ,"C1", "1,2,3");
+        commandCompiler.addBasicCommand("Macro1" ,"C19", "");
+        commandCompiler.addBasicCommand("Macro1", "C20", "");
+        experimentCompiler.compileComplexExperiment("Complex 1", "Complex 2", "C1,1,2,3;C20;Macro1");
+        packageCompiler.sendExperiment(experimentManager.getExperiments());
+        experimentManager.getExperiments().forEach(experiment -> assertNotSame("Entered" ,experiment.getStatus()));
     }
 
 }
